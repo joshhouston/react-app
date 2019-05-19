@@ -10,7 +10,7 @@ class Navigation extends Component {
         return (
             <div className='navigation'>
                 <div className="prev">
-                    <button onClick={this.props.decreaseCounter}>&lt; Previous </button>
+                    <button onClick={this.props.decreaseCounter}  className='meButt'>&lt; Previous </button>
                 </div>
                 <div className="buttons">
                     <button>Edit</button>
@@ -18,7 +18,7 @@ class Navigation extends Component {
                     <button>New</button>
                 </div>
                 <div className="next">
-                    <button onClick={this.props.updateCounter}>Next &gt;</button>
+                    <button onClick={this.props.updateCounter} className='meButt'>Next &gt;</button>
                 </div>
             </div>
         )

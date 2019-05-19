@@ -7,9 +7,8 @@ class Infocard extends Component {
         super(props)
         this.state = {
             dataFile: Data,
-            nextPerson: 0,
-            counter: 1,
-            city: ''
+            counter: 0,
+            index: 0
         }
         
         
@@ -21,27 +20,30 @@ class Infocard extends Component {
     
     
    updateCounter(props){
-       this.setState({counter: this.state.counter + 1})
-       console.log(this.state.counter)
-        let info= this.state.dataFile
-        for(let i=0; i < info.length; i++){
-            let test = info.map((post) => 
-                (post.city)
-            )
-            if(this.state.counter === 1){
-                this.state.city = test[0]
-                console.log(this.state.city)
-            }else {
-                this.state.city = ''
-            }
-            
+    //    this.setState({counter: this.state.counter + 1})
+    let meButt = document.getElementById('meButt')
+        let index = this.state.index
+        // let info= this.state.dataFile
+        if(index == this.state.dataFile.length - 1) {
+            index = 0;
+        }else {
+            index++
         }
+        this.setState({index})
        
    }
 
    decreaseCounter() {
-       this.setState({counter:this.state.counter - 1})
-       console.log(this.state.counter)
+       let meButt = document.getElementById('meButt')
+       let index = this.state.index
+        // let info= this.state.dataFile
+        if(index == this.state.dataFile.length) {
+            index = 0;
+        }else {
+            index--
+        }
+        this.setState({index})
+        
    }
     
     render(){
@@ -50,21 +52,21 @@ class Infocard extends Component {
             <section className='mainContent'>
                 <div className='infoCard'>
                     <div className="theInfo">
-                        <h2>Name</h2>
-                        <h3>From: {this.state.city}</h3>
-                        <h3>Job Title: </h3>
-                        <h3>Employer: </h3>
+                        <h2>{this.state.dataFile[this.state.index].name.first} {this.state.dataFile[this.state.index].name.last}</h2>
+                        <h3>From: {this.state.dataFile[this.state.index].city}</h3>
+                        <h3>Job Title: {this.state.dataFile[this.state.index].title}</h3>
+                        <h3>Employer: {this.state.dataFile[this.state.index].employer}</h3>
                     <div className="favMovies">
                         <h3>Favorite Movies:</h3>
                         <ol>
-                            <li>Movie 1</li>
-                            <li>Movie 2</li>
-                            <li>Movie 3</li>
+                            <li>{this.state.dataFile[this.state.index].favoriteMovies[0]}</li>
+                            <li>{this.state.dataFile[this.state.index].favoriteMovies[1]}</li>
+                            <li>{this.state.dataFile[this.state.index].favoriteMovies[2]}</li>
                         </ol>
                     </div>
                     </div>
                 <div className="counter">
-                    <h1>{this.state.counter}/25</h1>
+                    <h1>{this.state.dataFile[this.state.index].id}/25</h1>
                 </div>
                 </div>
             <div>
